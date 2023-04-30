@@ -5,12 +5,12 @@ The server can be configured to act as a client to pull and push data to remote
 locations as well as act an RSync daemon server, where other clients can
 retrieve or store data from/to the server. In RSync language, the shared
 folders are called modules. Since |omv| version 3.0 is possible now to create
-remote RSync jobs using ssh as transport shell.
+remote RSync tasks using ssh as transport shell.
 The RSync is divided in two tabs:
 
-.. _admin_rsync_jobs_client:
+.. _admin_rsync_tasks_client:
 
-Jobs (client)
+Tasks (client)
 -------------
 
 Based on cron, the tasks can be configured to run at certain time or make it
@@ -24,7 +24,7 @@ Type
 	  to place a destination server address. You can select here:
 
 		Mode (remote)
-			- Push: store contents to a remote server
+			- Push: Store contents to a remote server
 			- Pull: Retrieve contents from a remote server
 
 	Selecting one or the other will invert the folder as source or destination,
@@ -39,7 +39,7 @@ Destination/Source Server
 
 	Examples:
 
-	If you are targeting the job against an RSync daemon server::
+	If you are targeting the task against an RSync daemon server::
 
 		rsync://10.10.10.12/ModuleName
 		username@10.10.10.12::ModuleName
@@ -51,11 +51,11 @@ Destination/Source Server
 		username@10.10.0.12:/srv/dev-disk-by-label-VOLUME1/Documents
 
 .. warning::
-	When the RSync task is configured using ssh with PKA, the script that runs
+	When the RSync task is configured using ssh with public-key authentication, the script that runs
 	the jobs is non-interactive, this means there cannot be neither a
 	passphrase for the private key nor a login password. Make sure your
 	private key is not created with a password (in case is imported). Also make
-	sure the remote server can accept PKA and not enforce password login.
+	sure the remote server can accept public-key authentication and not enforce password login.
 
 **Authentication (remote)**
 
@@ -71,7 +71,7 @@ At the end there is an extra text field where you can add more
 
 Configuration
 	|omv| makes the tasks run by placing them in
-	:file:`/etc/cron.d/openmediavault-rsync` one line per job. The
+	:file:`/etc/cron.d/openmediavault-rsync` one line per task. The
 	cron time at the beginning, then user (root) and the target file that holds
 	the actual RSync file with the final command, is configured in the same way as 
 	:doc:`scheduled tasks </administration/general/cron>` The files are stored in
